@@ -1,11 +1,20 @@
 package ru.skypro.homework.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import ru.skypro.homework.dto.ads.AdDto;
+import ru.skypro.homework.dto.ads.AdsDto;
+import ru.skypro.homework.dto.ads.CreateOrUpdateAdDto;
+import ru.skypro.homework.dto.ads.ExtendedAdDto;
 
 @Slf4j
 @CrossOrigin(value = "http://localhost:3000")
@@ -18,7 +27,7 @@ public class AdsController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK")
     })
-    public ResponseEntity<AdsDTO> findAllAds() {
+    public ResponseEntity<AdsDto> findAllAds() {
         return ResponseEntity.ok().build();
     }
     @PostMapping
@@ -27,18 +36,18 @@ public class AdsController {
             @ApiResponse(responseCode = "201", description = "Created"),
             @ApiResponse(responseCode = "401", description = "Unauthorized")
     })
-    public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO) {
+    public ResponseEntity<AdDto> createAd(@RequestBody AdDto adDTO) {
         return ResponseEntity.ok().build();
     }
     @GetMapping("/{id}")
     @Operation(summary = "Получение информации об объявлении")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
-                    content = @Content(schema = @Schema(implementation = ExtendedAdDTO.class))),
+                    content = @Content(schema = @Schema(implementation = ExtendedAdDto.class))),
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "404", description = "Not found")
     })
-    public ResponseEntity<ExtendedAdDTO> getAdInfo(@PathVariable Integer id) {
+    public ResponseEntity<ExtendedAdDto> getAdInfo(@PathVariable Integer id) {
         return ResponseEntity.ok().build();
     }
     @DeleteMapping("/{id}")
@@ -58,16 +67,16 @@ public class AdsController {
     @Operation(summary = "Обновление информации об объявлении")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
-                    content = @Content(schema = @Schema(implementation = AdDTO.class))),
+                    content = @Content(schema = @Schema(implementation = AdDto.class))),
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Forbidden"),
             @ApiResponse(responseCode = "404", description = "Not found")
     })
-    public ResponseEntity<AdDTO> updateAdInfo(@PathVariable Integer id, @RequestBody CreateOrUpdateAdDTO createOrUpdateAd) {
+    public ResponseEntity<AdDto> updateAdInfo(@PathVariable Integer id, @RequestBody CreateOrUpdateAdDto createOrUpdateAd) {
         return ResponseEntity.ok().build();
     }
     @GetMapping("/me")
-    public ResponseEntity<AdsDTO> findMyAds() {
+    public ResponseEntity<AdsDto> findMyAds() {
         return ResponseEntity.ok().build();
     }
     @PatchMapping(value = "/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
