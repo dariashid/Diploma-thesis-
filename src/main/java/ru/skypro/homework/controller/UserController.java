@@ -5,11 +5,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.homework.dto.users.UpdateUserDto;
 import ru.skypro.homework.dto.users.UserSetPasswordDto;
+import ru.skypro.homework.service.UsersService;
 
 @Slf4j
 @RestController
@@ -17,7 +19,8 @@ import ru.skypro.homework.dto.users.UserSetPasswordDto;
 @RequiredArgsConstructor
 @RequestMapping("users")
 public class UserController {
-    // private final UsersService usersService;
+    private final UsersService usersService;
+
     @PostMapping("/set_password")
     @Operation(summary = "Обновление пароля")
     @ApiResponses({
@@ -25,7 +28,9 @@ public class UserController {
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Forbidden")
     })
-    public ResponseEntity<?> setPassword(@RequestBody UserSetPasswordDto userSetPasswordDto) {
+    public ResponseEntity<?> setPassword(@RequestBody UserSetPasswordDto userSetPasswordDto,
+                                         Authentication authentication) {
+        usersService.changeToPassword(userSetPasswordDto, authentication.name());
         return ResponseEntity.ok().build();
     }
 
