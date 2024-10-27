@@ -14,20 +14,25 @@ public class User {
     private String currentPassword;
     private String email;
     private String phone;
-    private String image;
+    @OneToOne
+    private Avatar avatar;
+
     public User() {
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(currentPassword, user.currentPassword) && Objects.equals(email, user.email) && Objects.equals(phone, user.phone) && Objects.equals(image, user.image);
+        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(currentPassword, user.currentPassword) && Objects.equals(email, user.email) && Objects.equals(phone, user.phone) && Objects.equals(avatar, user.avatar);
     }
+
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, currentPassword, email, phone, image);
+        return Objects.hash(id, firstName, lastName, currentPassword, email, phone, avatar);
     }
+
     @Override
     public String toString() {
         return "User{" +
@@ -37,50 +42,63 @@ public class User {
                 ", currentPassword='" + currentPassword + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", image='" + image + '\'' +
                 '}';
     }
+
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getCurrentPassword() {
         return currentPassword;
     }
+
     public void setCurrentPassword(String currentPassword) {
         this.currentPassword = currentPassword;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getPhone() {
         return phone;
     }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public String getImage() {
-        return image;
+
+    public Avatar getAvatar() {
+        return avatar;
     }
-    public void setImage(String image) {
-        this.image = image;
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 }
 

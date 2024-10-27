@@ -1,5 +1,8 @@
 package ru.skypro.homework.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,6 +28,7 @@ public class UserController {
     public ResponseEntity<?> setPassword(@RequestBody UserSetPasswordDto userSetPasswordDto) {
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("/me")
     @Operation(summary = "Получение информации об авторизованном пользователе")
     @ApiResponses({
@@ -39,6 +43,7 @@ public class UserController {
     public ResponseEntity getUser() {
         return ResponseEntity.ok().build();
     }
+
     @PatchMapping("/me")
     @Operation(summary = "Обновление информации об авторизованном пользователе")
     public ResponseEntity updateUser(@RequestBody UpdateUserDto updateUserDto) {
