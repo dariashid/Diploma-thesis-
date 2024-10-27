@@ -23,6 +23,7 @@ public class CommentsController {
                                      @RequestBody CommentsDto commentsDto) {
         return ResponseEntity.ok().build();
     }
+
     @PostMapping("/{id}/comments")
     @Operation(
             summary = "Добавление комментария к объявлению",
@@ -31,6 +32,7 @@ public class CommentsController {
     public ResponseEntity<?> setComment(@PathVariable Integer id, CreateOrUpdateCommentDto createOrUpdateCommentDto) {
         return ResponseEntity.ok().build();
     }
+
     @DeleteMapping("/{adId}/comments/{commentId}")
     @Operation(
             summary = "Удаление комментария",
@@ -40,6 +42,7 @@ public class CommentsController {
                                         @PathVariable Integer commentId) {
         return ResponseEntity.ok().build();
     }
+
     @PatchMapping("/{adId}/comments/{commentId}")
     @Operation(
             summary = "Обновление комментария",

@@ -23,6 +23,7 @@ public class Ad {
     private String description;
     @ManyToOne
     private User author;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,10 +31,12 @@ public class Ad {
         Ad ad = (Ad) o;
         return Objects.equals(pk, ad.pk) && Objects.equals(author, ad.author) && Objects.equals(image, ad.image) && Objects.equals(price, ad.price) && Objects.equals(title, ad.title);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(author, image, price, title);
     }
+
     @Override
     public String toString() {
         return "Ad{" +
