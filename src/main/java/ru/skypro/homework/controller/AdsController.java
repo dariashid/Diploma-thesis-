@@ -30,6 +30,7 @@ public class AdsController {
     public ResponseEntity<AdsDto> findAllAds() {
         return ResponseEntity.ok().build();
     }
+
     @PostMapping
     @Operation(summary = "Добавление объявления")
     @ApiResponses({
@@ -39,6 +40,7 @@ public class AdsController {
     public ResponseEntity<AdDto> createAd(@RequestBody AdDto adDTO) {
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("/{id}")
     @Operation(summary = "Получение информации об объявлении")
     @ApiResponses({
@@ -50,6 +52,7 @@ public class AdsController {
     public ResponseEntity<ExtendedAdDto> getAdInfo(@PathVariable Integer id) {
         return ResponseEntity.ok().build();
     }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or @adsService.isAuthorAd(principal.username, #adId)")
     @Operation(summary = "Удаление объявления")
@@ -62,6 +65,7 @@ public class AdsController {
     public ResponseEntity deleteAd(@PathVariable Integer id) {
         return ResponseEntity.ok().build();
     }
+
     @PatchMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or @adsService.isAuthorAd(principal.username, #adId)")
     @Operation(summary = "Обновление информации об объявлении")
@@ -75,10 +79,12 @@ public class AdsController {
     public ResponseEntity<AdDto> updateAdInfo(@PathVariable Integer id, @RequestBody CreateOrUpdateAdDto createOrUpdateAd) {
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("/me")
     public ResponseEntity<AdsDto> findMyAds() {
         return ResponseEntity.ok().build();
     }
+
     @PatchMapping(value = "/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasRole( 'ADMIN' ) or @adServiceImpl.findAdById(id).author.userName.equals(authentication.name)")
     public ResponseEntity updateAdImage(@PathVariable Integer id) {
