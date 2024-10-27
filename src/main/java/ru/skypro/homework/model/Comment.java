@@ -21,6 +21,7 @@ public class Comment {
     private User author;
     private Integer createdAt;
     private String text;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,10 +29,12 @@ public class Comment {
         Comment comment = (Comment) o;
         return Objects.equals(pk, comment.pk) && Objects.equals(author, comment.author) && Objects.equals(createdAt, comment.createdAt) && Objects.equals(text, comment.text);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(author, createdAt, text);
     }
+
     @Override
     public String toString() {
         return "Comment{" +
