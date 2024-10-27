@@ -1,5 +1,7 @@
 package ru.skypro.homework.model;
 
+import ru.skypro.homework.dto.Role;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -14,8 +16,7 @@ public class User {
     private String currentPassword;
     private String email;
     private String phone;
-    @OneToOne
-    private Avatar avatar;
+    private String image;
 
     public User() {
     }
@@ -25,12 +26,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(currentPassword, user.currentPassword) && Objects.equals(email, user.email) && Objects.equals(phone, user.phone) && Objects.equals(avatar, user.avatar);
+        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(currentPassword, user.currentPassword) && Objects.equals(email, user.email) && Objects.equals(phone, user.phone) && Objects.equals(image, user.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, currentPassword, email, phone, avatar);
+        return Objects.hash(id, firstName, lastName, currentPassword, email, phone, image);
     }
 
     @Override
@@ -42,6 +43,7 @@ public class User {
                 ", currentPassword='" + currentPassword + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 
@@ -93,12 +95,20 @@ public class User {
         this.phone = phone;
     }
 
-    public Avatar getAvatar() {
-        return avatar;
+    public String getImage() {
+        return image;
     }
 
-    public void setAvatar(Avatar avatar) {
-        this.avatar = avatar;
+    public void setImage(String image) {
+        this.image = image;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
 }
-

@@ -37,7 +37,7 @@ public class AdsController {
             @ApiResponse(responseCode = "201", description = "Created"),
             @ApiResponse(responseCode = "401", description = "Unauthorized")
     })
-    public ResponseEntity<AdDto> createAd(@RequestBody AdDto adDto) {
+    public ResponseEntity<AdDto> createAd(@RequestBody AdDto adDTO) {
         return ResponseEntity.ok().build();
     }
 

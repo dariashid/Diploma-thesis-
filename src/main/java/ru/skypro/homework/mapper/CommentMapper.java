@@ -13,21 +13,16 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CommentMapper {
     @Mappings({
-            @Mapping(target = "pk", source = "id"),
             @Mapping(target = "author", source = "author.id"),
-            @Mapping(target = "authorImage", source = "author.avatar.filePath"),
-            @Mapping(target = "authorFirstName", source = "author.firstName"),
-            @Mapping(target = "createdAt", source = "createdAt.time")
+            @Mapping(target = "authorImage", source = "author.image"),
+            @Mapping(target = "authorFirstName", source = "author.firstName")
     })
-    CommentDto commentToCommentDTO(Comment comment);
+    CommentDto commentToCommentDto(Comment comment);
 
-    List<CommentDto> commentsToCommentsDTO(List<Comment> comments);
+    List<CommentDto> commentsToCommentsDto(List<Comment> comments);
 
     CreateOrUpdateCommentDto commentToCreateOrUpdateCommentDto(Comment comment);
 
-    @Mappings({
-            @Mapping(target = "id", source = "pk"),
-            @Mapping(target = "author.id", source = "author")
-    })
-    Comment commentDTOToComment(CommentDto commentDto);
+    @Mapping(target = "author.id", source = "author")
+    Comment commentDtoToComment(CommentDto commentDto);
 }
