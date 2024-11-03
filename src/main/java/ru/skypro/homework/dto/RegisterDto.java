@@ -1,7 +1,6 @@
 package ru.skypro.homework.dto;
 
 import lombok.Data;
-import ru.skypro.homework.dto.RoleDto;
 
 @Data
     public class RegisterDto {

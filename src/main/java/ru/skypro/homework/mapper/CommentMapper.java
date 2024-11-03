@@ -4,8 +4,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.Mappings;
-import ru.skypro.homework.comments.CommentDto;
-import ru.skypro.homework.comments.CreateOrUpdateCommentDto;
+import ru.skypro.homework.dto.comments.CommentDto;
+import ru.skypro.homework.dto.comments.CreateOrUpdateCommentDto;
+
 
 import javax.xml.stream.events.Comment;
 import java.util.List;
@@ -13,16 +14,17 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CommentMapper {
     @Mappings({
+            @Mapping(target = "pk", source = "id"),
             @Mapping(target = "author", source = "author.id"),
-            @Mapping(target = "authorImage", source = "author.image"),
-            @Mapping(target = "authorFirstName", source = "author.firstName")
+            @Mapping(target = "authorImage", source = "author.avatar.filePath"),
+            @Mapping(target = "authorFirstName", source = "author.firstName"),
+            @Mapping(target = "createdAt", source = "createdAt.time")
     })
-    CommentDto commentToCommentDto(Comment comment);
+    CommentDto commentToCommentDTO(Comment comment);
 
-    List<CommentDto> commentsToCommentsDto(List<Comment> comments);
 
+
+    List<CommentDto> commentsToCommentsDTO(List<Comment> comments);
     CreateOrUpdateCommentDto commentToCreateOrUpdateCommentDto(Comment comment);
 
-    @Mapping(target = "author.id", source = "author")
-    Comment commentDtoToComment(CommentDto commentDto);
 }

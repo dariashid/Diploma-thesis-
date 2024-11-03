@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Avatar {
+public class ImageAd {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +18,5 @@ public class Avatar {
     private byte[] data;
     @OneToOne
     @JsonIgnore
-    private User user;
-
+    private Ad ad;
 }
