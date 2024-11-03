@@ -1,4 +1,4 @@
-package ru.skypro.homework.service;
+package ru.skypro.homework.service.impl;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,16 +8,17 @@ import ru.skypro.homework.model.User;
 import java.util.Collection;
 import java.util.List;
 
-
 public class MyUserPrincipal implements UserDetails {
     private User user;
 
     public MyUserPrincipal(User user) {
         this.user = user;
+
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         return List.of(new SimpleGrantedAuthority(user.getRole().name()));
     }
 
